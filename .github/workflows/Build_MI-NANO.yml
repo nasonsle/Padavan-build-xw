@@ -46,13 +46,21 @@ jobs:
         exit 1
         fi
         cp -f configs/templates/$TNAME.config .config
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/g' .config
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=y/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_MENTOHUST=y/CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=y/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM=y/CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_DOGCOM=y/CONFIG_FIRMWARE_INCLUDE_DOGCOM=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_MINIEAP=y/CONFIG_FIRMWARE_INCLUDE_MINIEAP=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=y/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_FRPC=y/CONFIG_FIRMWARE_INCLUDE_FRPC=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_FRPS=y/CONFIG_FIRMWARE_INCLUDE_FRPS=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_TUNSAFE=y/CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_WIREGUARD=y/CONFIG_FIRMWARE_INCLUDE_WIREGUARD=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SRELAY=y/CONFIG_FIRMWARE_INCLUDE_SRELAY=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n/g' .config
         ######################################################################
@@ -63,14 +71,15 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_XRAY=n" >> .config #集成xray执行文件 ~4.5M
         echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> .config #集成v2ray执行文件
         echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> .config #集成trojan执行文件 ~1.2M
-        echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> .config #simple-obfs混淆插件
+        echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> .config #simple-obfs混淆插件
         ##科学上网##
 
         ##广告管理##
-        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
+        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> .config #adbyby plus+
         ##DNS服务##
         echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> .config #smartdns
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #adg DNS去AD
+        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DnsForwarder
 
 
         ##内网穿透服务##
@@ -80,10 +89,13 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=n" >> .config #wireguard ~10k
         ##内网穿透服务##
         echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=n" >> .config  #ALDRIVER  ~3m
-        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=y" >> .config #mentohust
+        ##锐捷认证服务##
+        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #mentohust
+        ##校园网账号认证##
+        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #ScutClient
         
         ##流控QOS##
-        echo "CONFIG_FIRMWARE_INCLUDE_SQM=y" >> .config #SQM QOS#CPU超频
+        echo "CONFIG_FIRMWARE_INCLUDE_SQM=n" >> .config #SQM QOS#CPU超频
         echo "CONFIG_FIRMWARE_INCLUDE_OC=n" >> .config #CPU超频开关
         echo 'CONFIG_FIRMWARE_MT7621_OC="0x312"' >> .config #此处填写对应频率的十六进制：1000Mhz=0x312 1100Mhz=0x362 1120Mhz=0x372 1200Mhz=0x3B2
 
